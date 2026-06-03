@@ -1,6 +1,0 @@
-{
-  "name": "Lunaro",
-  "description": "Элегантный семейный трекер финансов и расходов с облачной синхронизацией",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
