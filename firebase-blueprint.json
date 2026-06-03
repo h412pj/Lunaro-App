@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Финансовая операция (доход или расход) в рамках общей семьи",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID операции" },
+        "amount": { "type": "number", "description": "Сумма в рублях" },
+        "description": { "type": "string", "description": "Описание операции" },
+        "category": { "type": "string", "description": "ID категории" },
+        "type": { "type": "string", "enum": [ "income", "expense" ], "description": "Тип операции" },
+        "date": { "type": "string", "format": "date", "description": "Дата проведения в формате YYYY-MM-DD" },
+        "createdAt": { "type": "integer", "description": "Unix timestamp создания" },
+        "familyCode": { "type": "string", "description": "Код общего семейного пространства" },
+        "createdByUser": { "type": "string", "description": "Имя пользователя " }
+      },
+      "required": [ "id", "amount", "category", "type", "date", "createdAt", "familyCode", "createdByUser" ]
+    },
+    "User": {
+      "title": "User",
+      "description": "Профиль пользователя и его семейный код",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID пользователя (Firebase UID)" },
+        "displayName": { "type": "string", "description": "Имя пользователя в приложении" },
+        "familyCode": { "type": "string", "description": "Код совместного доступа к бюджету" }
+      },
+      "required": [ "id", "displayName", "familyCode" ]
+    }
+  },
+  "firestore": {
+    "/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "Коллекция всех транзакций"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Пользовательские профили и их коды семей"
+    }
+  }
+}
